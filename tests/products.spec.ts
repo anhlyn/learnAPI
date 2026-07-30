@@ -28,7 +28,7 @@ test("GET /products/{id}", async({request})=>{
     console.log(res.status());
 });
 
-test.only("POST /orders", async({request})=>{
+test("POST /orders", async({request})=>{
     const res = await request.post('https://api.valentinos-magic-beans.click/orders', {
         data: {
             "customerDetails": {
