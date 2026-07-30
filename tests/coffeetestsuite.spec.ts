@@ -63,6 +63,9 @@ test('POST /orders/lookup', async({request})=>{
 
     const bodyRes = await response.json();
 
+    console.log(orderSearchData);
+    console.log(bodyRes);
+
     expect(response.ok()).toBeTruthy();
     expect(response.status()).toEqual(200);
 
