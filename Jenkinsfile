@@ -23,5 +23,27 @@ pipeline{
                 }
             }
         }
+        stage('E2E Test'){
+            agent{
+                docker{
+                    image 'mcr.microsoft.com/playwright:v1.62.0-noble'
+                    reuseNode true
+                }
+            }
+            steps{
+                sh '''
+                    npx playwright test test-e2e
+                '''
+            }
+            post{
+                always{
+                    publishHTML(target:[
+                        reportName: 'Report - E2E Testing',
+                        reportDir: 'playwright-report',
+                        reportFiles: 'index.html'
+                    ])
+                }
+            }
+        }
     }
 }
