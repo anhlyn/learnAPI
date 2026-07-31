@@ -8,7 +8,10 @@ pipeline{
                 }
             }
             steps{
-                sh 'npx playwright test'
+                sh '''
+                    npm ci
+                    npx playwright test test-api
+                '''
             }
         }
     }
