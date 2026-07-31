@@ -1,28 +1,13 @@
 pipeline{
-    agent any
     stages{
-        stage('stage 01'){
-            steps{
-                sh 'echo "This is STAGE 01"'
-            }
-        }
-        stage('Parallel Stage'){
-            parallel{
-                stage('stage 02'){
-                    steps{
-                        sh 'echo "This is STAGE 02"'
-                    }
-                }
-                stage('stage 03'){
-                    steps{
-                        sh 'echo "This is STAGE 03"'
-                    }
+        stage('Api Test'){
+            agent{
+                docker{
+                    image 'mcr.microsoft.com/playwright:v1.50.0-focal'
                 }
             }
-        }
-        stage('Deployment Stage'){
             steps{
-                sh 'echo "Deployment stage here"'
+                sh 'npx playwright test'
             }
         }
     }
