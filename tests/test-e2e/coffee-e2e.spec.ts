@@ -18,6 +18,22 @@ test('Login with user not exist', async({page})=>{
     await eleBtnLogin.click();
     await expect(eleErrMsg).toBeVisible();
 });
+
+test('Login with invalid password', async({page})=>{
+    await page.goto('https://valentinos-magic-beans.click/login');
+    await expect(page).toHaveURL('https://valentinos-magic-beans.click/login');
+
+    const eleEmail = page.locator('[data-test-id="login-email-input"]');
+    const elePassword = page.locator('[data-test-id="login-password-input"]');
+    const eleBtnLogin = page.locator('[data-test-id="login-submit-button"]');
+    const eleErrMsg = page.locator('li[role="status"] div.text-sm').filter({hasText: 'Incorrect username or password.'});
+
+    await eleEmail.fill(validAcc.email);
+    await elePassword.fill('123456');
+    await eleBtnLogin.click();
+    await expect(eleErrMsg).toBeVisible();
+});
+
 test('Login with valid account', async({page})=>{
     await page.goto('https://valentinos-magic-beans.click/login');
     await expect(page).toHaveURL('https://valentinos-magic-beans.click/login');
