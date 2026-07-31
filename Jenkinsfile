@@ -1,10 +1,11 @@
 pipeline{
     agent any
     stages{
-        stage('Api Test'){
+        stage('API Test'){
             agent{
                 docker{
                     image 'mcr.microsoft.com/playwright:v1.62.0-noble'
+                    reuseNode true
                 }
             }
             steps{
