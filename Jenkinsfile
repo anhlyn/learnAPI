@@ -13,6 +13,15 @@ pipeline{
                     npx playwright test test-api
                 '''
             }
+            post{
+                always{
+                    publishHTML(target:[
+                        reportName: 'Report - API Testing',
+                        reportDir: 'playwright-report',
+                        reportFiles: 'index.html'
+                    ])
+                }
+            }
         }
     }
 }
