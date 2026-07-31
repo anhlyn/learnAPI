@@ -4,7 +4,7 @@ pipeline{
         stage('Api Test'){
             agent{
                 docker{
-                    image 'mcr.microsoft.com/playwright:v1.50.0-focal'
+                    image 'mcr.microsoft.com/playwright:v1.62.0-noble'
                 }
             }
             steps{
